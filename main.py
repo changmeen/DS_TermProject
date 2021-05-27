@@ -51,17 +51,21 @@ crecord = crecord.sort_values(['ID','Months from today'], ascending=True)
 # C: paid off that month 
 # X: No loan for the month
 
-print(crecord['STATUS'].value_counts())
+# https://www.thebalance.com/when-does-a-late-payment-go-on-my-credit-report-960434
+# According to this post, Some creditors or lenders cannot report overdue payments to credit investigators until 60 days later.
+# So we changed less than 60 days, no payments, no loans to zero (good credit) and more than 60 days of arrears to 1 (bad credit).
 
 crecord['STATUS'].replace({'C': 0, 'X' : 0}, inplace=True)
 crecord['STATUS'] = crecord['STATUS'].astype('int')
 crecord['STATUS'] = crecord['STATUS'].apply(lambda x:1 if x >= 2 else 0)
 
-crecord['STATUS'].value_counts(normalize=True)
+print(crecord['STATUS'].value_counts(normalize=True))
 
+# Because the ID was duplicated, it was reduced to the record that was used the longest time ago.
 crecordgb = crecord.groupby('ID').agg(max).reset_index()
 
 df = app.join(crecordgb.set_index('ID'), on='ID', how='inner')
-df.drop(['Months from today', 'MONTHS_BALANCE'], axis=1, inplace=True)
+df.drop(['ID','Months from today', 'MONTHS_BALANCE'], axis=1, inplace=True)
 
-print(df['STATUS'].value_counts(normalize=True))
+df.reset_index(drop=True,inplace=True)
+
