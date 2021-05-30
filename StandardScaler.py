@@ -59,10 +59,10 @@ y = df['STATUS']
 # At Downside we do scaling, using KNN, Decision Tree Classifiers
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
-# Robust Scaling
-rb = preprocessing.RobustScaler()
-X_train_scale = rb.fit_transform(X_train)
-X_test_scale = rb.transform(X_test)
+# Standard Scaling
+ss = preprocessing.StandardScaler()
+X_train_scale = ss.fit_transform(X_train)
+X_test_scale = ss.transform(X_test)
 
 # Because label has too small number of 0 we have to do something
 # So we use SMOTE to copy data randomly who's value is 1
@@ -83,7 +83,7 @@ gs_knn = GridSearchCV(KNeighborsClassifier(), grid_params_knn, verbose=1, cv=5, 
 gs_knn.fit(X_train_balanced, y_train_balanced)
 
 # Show the model performance of train set
-print("Robust Scaler, KNN Classifier")
+print("Standard Scaler, KNN Classifier")
 print("best_parameter: ", gs_knn.best_params_)
 print("best_train_score: %.2f" % gs_knn.best_score_)
 
@@ -107,7 +107,7 @@ gs_dt = GridSearchCV(DecisionTreeClassifier(), grid_params_dt, verbose=1, cv=3, 
 gs_dt.fit(X_train_balanced, y_train_balanced)
 
 # Show the model performance of train set
-print("Robust Scaler, DecisionTree Classifier")
+print("Standard Scaler, DecisionTree Classifier")
 print("best_parameter: ", gs_dt.best_params_)
 print("best_train_score: %.2f" % gs_dt.best_score_)
 
@@ -121,7 +121,7 @@ print()
 Classifiers = ['KNN Classifier', 'DecisionTree Classifier']
 Scores = [knn_score * 100, dt_score * 100]
 plt.bar(Classifiers, Scores, width=0.5)
-plt.title('Robust Scaling')
+plt.title('Standard Scaling')
 plt.xlabel('Classifiers')
 plt.ylabel('Scores (%)')
 plt.show()
