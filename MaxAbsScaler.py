@@ -2,9 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import warnings
-
-from sklearn.feature_selection import SelectKBest, f_classif
-
 warnings.filterwarnings('ignore')
 
 from sklearn import preprocessing
@@ -79,22 +76,26 @@ grid_params_knn = {
     'metric': ['euclidean', 'manhattan']
 }
 
+
+# Make GridSearchCV with KNeighborsClassifier
+# make model by fit train dataset
 gs_knn = GridSearchCV(KNeighborsClassifier(), grid_params_knn, verbose=1, cv=5, n_jobs=-1)
 gs_knn.fit(X_train_balanced, y_train_balanced)
 
+# Show the model performance of train set
 print("MaxAbs Scaler, KNN Classifier")
 print("best_params_: ", gs_knn.best_params_)
 print("best_score_: ", gs_knn.best_score_)
 
+# Show the score of model from test set
 prediction = gs_knn.predict(X_test_balanced)
 knn_score = gs_knn.score(X_test_balanced, y_test_balanced)
 print("score: %.2f" % knn_score)
 print()
 
-# -----------------------------------------------------------------------------------------
 
-# Decision Tree with Entropy
-# param 정리
+# ------------------------------------------DecisionTree---------------------------------------------------
+# Set HyperParameters of DecisionTreeClassifier
 
 grid_params_dt = {
     'min_samples_split': [2, 3, 4],
@@ -103,23 +104,24 @@ grid_params_dt = {
     'max_leaf_nodes': list(range(7, 100))
 }
 
+# Make GridSearchCV with DecisionTreeClassifier
+# make model by fit train dataset
 gs_dt = GridSearchCV(DecisionTreeClassifier(), grid_params_dt, verbose=1, cv=3, n_jobs=-1)
 gs_dt.fit(X_train_balanced, y_train_balanced)
 
-# grid_scores = gs_dt.cv_results_
-# plt.grid_search(grid_scores, change='max_features', kind='bar')
-# plt.show()
-
-# Show the results...
+# Show the model performance of train set
 print("MaxAbs Scaler, Decision Tree Classifier")
 print("best_params_: ", gs_dt.best_params_)
 print("best_score_: ", gs_dt.best_score_)
 
+# Show the score of model from test set
 prediction = gs_dt.predict(X_test_balanced)
 dt_score = gs_dt.score(X_test_balanced, y_test_balanced)
 print("score: %.2f" % dt_score)
 print()
 
+# -----------------------------------------Show the result----------------------------------------------------
+# Using bar plot, show the scores per Classifiers
 Classifiers = ['KNN Classifier', 'DecisionTree Classifier']
 Scores = [knn_score * 100, dt_score * 100]
 plt.bar(Classifiers, Scores, width=0.5)
