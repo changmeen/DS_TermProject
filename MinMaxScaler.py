@@ -84,8 +84,8 @@ gs_knn.fit(X_train_balanced, y_train_balanced)
 
 # Show the model performance of train set
 print("MinMax Scaler, KNN Classifier")
-print("best_params_: ", gs_knn.best_params_)
-print("best_score_: ", gs_knn.best_score_)
+print("best_parameter: ", gs_knn.best_params_)
+print("best_train_score: %.2f" % gs_knn.best_score_)
 
 # Show the score of model from test set
 knn_score = gs_knn.score(X_test_balanced, y_test_balanced)
@@ -108,8 +108,8 @@ gs_dt.fit(X_train_balanced, y_train_balanced)
 
 # Show the model performance of train set
 print("MinMax Scaler, DecisionTree Classifier")
-print("best_params_: ", gs_dt.best_params_)
-print("best_score_: ", gs_dt.best_score_)
+print("best_parameter: ", gs_dt.best_params_)
+print("best_train_score: %.2f" % gs_dt.best_score_)
 
 # Show the score of model from test set
 dt_score = gs_dt.score(X_test_balanced, y_test_balanced)
