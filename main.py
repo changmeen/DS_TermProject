@@ -58,7 +58,6 @@ plt.show()
 app.drop('OCCUPATION_TYPE', axis=1, inplace=True)
 
 # Find columns that have non numeric values
-# To check if they are useful or not
 # Print object columns names
 ot = pd.DataFrame(app.dtypes == 'object').reset_index()
 object_type = ot[ot[0] == True]['index']
@@ -67,21 +66,20 @@ print(object_type)
 print()
 
 # Find column that have numeric values
-# To check if they are useful or not
 num_type = pd.DataFrame(app.dtypes != 'object').reset_index().rename(
     columns={0: 'yes/no'})
 num_type = num_type[num_type['yes/no'] == True]['index']
 
-# Print numeric columns number per values
-a = app[object_type]['CODE_GENDER'].value_counts()
-b = app[object_type]['FLAG_OWN_CAR'].value_counts()
-c = app[object_type]['FLAG_OWN_REALTY'].value_counts()
-d = app[object_type]['NAME_INCOME_TYPE'].value_counts()
-e = app[object_type]['NAME_EDUCATION_TYPE'].value_counts()
-f = app[object_type]['NAME_FAMILY_STATUS'].value_counts()
-g = app[object_type]['NAME_HOUSING_TYPE'].value_counts()
+# Print the number of values per Non numeric Columns from application_record
+a = app['CODE_GENDER'].value_counts()
+b = app['FLAG_OWN_CAR'].value_counts()
+c = app['FLAG_OWN_REALTY'].value_counts()
+d = app['NAME_INCOME_TYPE'].value_counts()
+e = app['NAME_EDUCATION_TYPE'].value_counts()
+f = app['NAME_FAMILY_STATUS'].value_counts()
+g = app['NAME_HOUSING_TYPE'].value_counts()
 
-print("Print Numeric Columns number per values from application_record")
+print("Print the number of values per Non numeric Columns from application_record")
 print(a, "\n")
 print(b, "\n")
 print(c, "\n")
@@ -90,11 +88,12 @@ print(e, "\n")
 print(f, "\n")
 print(g, "\n")
 
-# Encode object(Non numeric) columns into 0, 1
+# Encode object(Non-numeric) columns into 0, 1
 for x in app:
     if app[x].dtypes == 'object':
         app[x] = LabelEncoder().fit_transform(app[x])
-print("Encode object(Non numeric) columns into 0, 1 from application_record")
+
+print("Encode object(Non-numeric) columns into 0, 1 from application_record")
 print(app.head())
 print()
 
