@@ -49,7 +49,8 @@ df.drop(['ID', 'Months from today', 'MONTHS_BALANCE'], axis=1, inplace=True)
 
 df.reset_index(drop=True, inplace=True)
 
-X = df.drop(['STATUS'], axis=1)
+X = df[['NAME_FAMILY_STATUS', 'FLAG_OWN_REALTY', 'FLAG_WORK_PHONE', 'NAME_EDUCATION_TYPE',
+        'FLAG_PHONE', 'CODE_GENDER', 'AMT_INCOME_TOTAL']]
 y = df['STATUS']
 
 # Upside is same from Main.py only change showing part
@@ -67,37 +68,39 @@ oversample = SMOTE()
 X_train_balanced, y_train_balanced = oversample.fit_resample(X_train_scale, y_train)
 X_test_balanced, y_test_balanced = oversample.fit_resample(X_test_scale, y_test)
 
-grid_params = {
-    'n_neighbors': np.arange(3, 7),
+grid_params_knn = {
+    'n_neighbors': np.arange(3, 20),
     'weights': ['uniform', 'distance'],
     'metric': ['euclidean', 'manhattan']
 }
 
-gs = GridSearchCV(KNeighborsClassifier(), grid_params, verbose=1, cv=3, n_jobs=-1)
-gs.fit(X_train_balanced, y_train_balanced)
+gs_knn = GridSearchCV(KNeighborsClassifier(), grid_params_knn, verbose=1, cv=3, n_jobs=-1)
+gs_knn.fit(X_train_balanced, y_train_balanced)
 
 print("Robust Scaler, KNN Classifier")
-print("best_params_: ", gs.best_params_)
-print("best_score_: ", gs.best_score_)
+print("best_params_: ", gs_knn.best_params_)
+print("best_score_: ", gs_knn.best_score_)
 
-prediction = gs.predict(X_test_balanced)
-score = gs.score(X_test_balanced, y_test_balanced)
+prediction = gs_knn.predict(X_test_balanced)
+score = gs_knn.score(X_test_balanced, y_test_balanced)
 print("score: %.2f" % score)
 print()
 
-grid_params = {
-    # 이 부분은 다 같이 정하는 부분
-    # 일단 Github에 올립니다.
+grid_params_dt = {
+    'min_samples_split': [2, 3, 4],
+    'max_features': [3, 5, 7],
+    'max_depth': [3, 5, 7],
+    'max_leaf_nodes': list(range(7, 100))
 }
 
-gs = GridSearchCV(DecisionTreeClassifier(), grid_params, verbose=1, cv=3, n_jobs=-1)
-gs.fit(X_train_balanced, y_train_balanced)
+gs_dt = GridSearchCV(DecisionTreeClassifier(), grid_params_dt, verbose=1, cv=3, n_jobs=-1)
+gs_dt.fit(X_train_balanced, y_train_balanced)
 
 print("Robust Scaler, DecisionTree Classifier")
-print("best_params_: ", gs.best_params_)
-print("best_score_: ", gs.best_score_)
+print("best_params_: ", gs_dt.best_params_)
+print("best_score_: ", gs_dt.best_score_)
 
-prediction = gs.predict(X_test_balanced)
-score = gs.score(X_test_balanced, y_test_balanced)
+prediction = gs_dt.predict(X_test_balanced)
+score = gs_dt.score(X_test_balanced, y_test_balanced)
 print("score: %.2f" % score)
 print()

@@ -176,8 +176,11 @@ print()
 # param 정리
 
 grid_params_dt = {
-    'max_leaf_nodes': list(range(2, 100)),
-    'min_samples_split': [2, 3, 4]
+    'max_samples_split': [2, 4, 6],
+    'min_samples_split': [2, 3, 4],
+    'max_features': [3, 5, 7],
+    'max_depth': [3, 5, 7],
+    'max_leaf_nodes': list(range(2, 100))
 }
 
 gs_dt = GridSearchCV(DecisionTreeClassifier(), grid_params_dt, verbose=1, cv=3, n_jobs=-1)
