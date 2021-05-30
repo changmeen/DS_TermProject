@@ -70,12 +70,12 @@ oversample = SMOTE()
 X_train_balanced, y_train_balanced = oversample.fit_resample(X_train_scale, y_train)
 X_test_balanced, y_test_balanced = oversample.fit_resample(X_test_scale, y_test)
 
+# Set HyperParameters of KNeighborsClassifier
 grid_params_knn = {
     'n_neighbors': np.arange(3, 30),
     'weights': ['uniform', 'distance'],
     'metric': ['euclidean', 'manhattan']
 }
-
 
 # Make GridSearchCV with KNeighborsClassifier
 # make model by fit train dataset
@@ -84,19 +84,16 @@ gs_knn.fit(X_train_balanced, y_train_balanced)
 
 # Show the model performance of train set
 print("MaxAbs Scaler, KNN Classifier")
-print("best_params_: ", gs_knn.best_params_)
-print("best_score_: ", gs_knn.best_score_)
+print("best_parameter: ", gs_knn.best_params_)
+print("best_train_score: %.2f" % gs_knn.best_score_)
 
 # Show the score of model from test set
-prediction = gs_knn.predict(X_test_balanced)
 knn_score = gs_knn.score(X_test_balanced, y_test_balanced)
 print("score: %.2f" % knn_score)
 print()
 
-
 # ------------------------------------------DecisionTree---------------------------------------------------
 # Set HyperParameters of DecisionTreeClassifier
-
 grid_params_dt = {
     'min_samples_split': [2, 3, 4],
     'max_features': [3, 5, 7],
@@ -111,11 +108,10 @@ gs_dt.fit(X_train_balanced, y_train_balanced)
 
 # Show the model performance of train set
 print("MaxAbs Scaler, Decision Tree Classifier")
-print("best_params_: ", gs_dt.best_params_)
-print("best_score_: ", gs_dt.best_score_)
+print("best_parameter: ", gs_dt.best_params_)
+print("best_train_score: %.2f" % gs_dt.best_score_)
 
 # Show the score of model from test set
-prediction = gs_dt.predict(X_test_balanced)
 dt_score = gs_dt.score(X_test_balanced, y_test_balanced)
 print("score: %.2f" % dt_score)
 print()
@@ -131,4 +127,3 @@ plt.ylabel('Scores (%)')
 plt.show()
 
 # -----------------------------------------------------------------------------------------
-

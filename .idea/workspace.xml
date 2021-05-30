@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a111d530-f3b8-49ed-bcc1-eb59506516e4" name="Default Changelist" comment="출력 결과 약간 수정">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MaxAbsScaler.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxAbsScaler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,9 +105,9 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.main" />
       <item itemvalue="Python.MaxAbsScaler" />
       <item itemvalue="Python.RobustScaler" />
-      <item itemvalue="Python.main" />
     </list>
     <recent_temporary>
       <list>
