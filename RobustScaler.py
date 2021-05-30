@@ -79,7 +79,7 @@ gs_knn.fit(X_train_balanced, y_train_balanced)
 
 print("Robust Scaler, KNN Classifier")
 print("best_params_: ", gs_knn.best_params_)
-print("best_score_: ", gs_knn.best_score_)
+print("best_score_: %.2f" % gs_knn.best_score_)
 
 prediction = gs_knn.predict(X_test_balanced)
 score = gs_knn.score(X_test_balanced, y_test_balanced)
@@ -98,7 +98,7 @@ gs_dt.fit(X_train_balanced, y_train_balanced)
 
 print("Robust Scaler, DecisionTree Classifier")
 print("best_params_: ", gs_dt.best_params_)
-print("best_score_: ", gs_dt.best_score_)
+print("best_score_: %.2f" % gs_dt.best_score_)
 
 prediction = gs_dt.predict(X_test_balanced)
 score = gs_dt.score(X_test_balanced, y_test_balanced)

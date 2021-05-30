@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a111d530-f3b8-49ed-bcc1-eb59506516e4" name="Default Changelist" comment="RobustScaler.py 일단 Github 올립니다. grid_params는 어떤 값을 넣을지 아직 안 정함">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="a111d530-f3b8-49ed-bcc1-eb59506516e4" name="Default Changelist" comment="RobustScaler.py X 수정하고 grid_params 파라미터 약간 수정후 올림">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MaxAbsScaler.py" beforeDir="false" afterPath="$PROJECT_DIR$/MaxAbsScaler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RobustScaler.py" beforeDir="false" afterPath="$PROJECT_DIR$/RobustScaler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +122,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622290026411</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="RobustScaler.py X 수정하고 grid_params 파라미터 약간 수정후 올림">
+      <created>1622352028778</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1622352028778</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,6 +148,7 @@
     <MESSAGE value="주석이랑 앞의 설명 부분 추가" />
     <MESSAGE value="Main.py 정리 후 Commit" />
     <MESSAGE value="RobustScaler.py 일단 Github 올립니다. grid_params는 어떤 값을 넣을지 아직 안 정함" />
-    <option name="LAST_COMMIT_MESSAGE" value="RobustScaler.py 일단 Github 올립니다. grid_params는 어떤 값을 넣을지 아직 안 정함" />
+    <MESSAGE value="RobustScaler.py X 수정하고 grid_params 파라미터 약간 수정후 올림" />
+    <option name="LAST_COMMIT_MESSAGE" value="RobustScaler.py X 수정하고 grid_params 파라미터 약간 수정후 올림" />
   </component>
 </project>
