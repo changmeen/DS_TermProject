@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import warnings
@@ -58,6 +59,7 @@ y = df['STATUS']
 # At Downside we do scaling, using KNN, Decision Tree Classifiers
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
+# Robust Scaling
 rb = preprocessing.RobustScaler()
 X_train_scale = rb.fit_transform(X_train)
 X_test_scale = rb.transform(X_test)
@@ -69,21 +71,21 @@ X_train_balanced, y_train_balanced = oversample.fit_resample(X_train_scale, y_tr
 X_test_balanced, y_test_balanced = oversample.fit_resample(X_test_scale, y_test)
 
 grid_params_knn = {
-    'n_neighbors': np.arange(3, 20),
+    'n_neighbors': np.arange(3, 30),
     'weights': ['uniform', 'distance'],
     'metric': ['euclidean', 'manhattan']
 }
 
-gs_knn = GridSearchCV(KNeighborsClassifier(), grid_params_knn, verbose=1, cv=3, n_jobs=-1)
+gs_knn = GridSearchCV(KNeighborsClassifier(), grid_params_knn, verbose=1, cv=5, n_jobs=-1)
 gs_knn.fit(X_train_balanced, y_train_balanced)
 
 print("Robust Scaler, KNN Classifier")
-print("best_params_: ", gs_knn.best_params_)
-print("best_score_: %.2f" % gs_knn.best_score_)
+print("best_parameter: ", gs_knn.best_params_)
+print("best_train_score: %.2f" % gs_knn.best_score_)
 
 prediction = gs_knn.predict(X_test_balanced)
-score = gs_knn.score(X_test_balanced, y_test_balanced)
-print("score: %.2f" % score)
+knn_score = gs_knn.score(X_test_balanced, y_test_balanced)
+print("test_score: %.2f" % knn_score)
 print()
 
 grid_params_dt = {
@@ -97,10 +99,18 @@ gs_dt = GridSearchCV(DecisionTreeClassifier(), grid_params_dt, verbose=1, cv=3, 
 gs_dt.fit(X_train_balanced, y_train_balanced)
 
 print("Robust Scaler, DecisionTree Classifier")
-print("best_params_: ", gs_dt.best_params_)
-print("best_score_: %.2f" % gs_dt.best_score_)
+print("best_parameter: ", gs_dt.best_params_)
+print("best_train_score: %.2f" % gs_dt.best_score_)
 
 prediction = gs_dt.predict(X_test_balanced)
-score = gs_dt.score(X_test_balanced, y_test_balanced)
-print("score: %.2f" % score)
+dt_score = gs_dt.score(X_test_balanced, y_test_balanced)
+print("test_score: %.2f" % dt_score)
 print()
+
+Classifiers = ['KNN Classifier', 'DecisionTree Classifier']
+Scores = [knn_score * 100, dt_score * 100]
+plt.bar(Classifiers, Scores, width=0.5)
+plt.title('Robust Scaling')
+plt.xlabel('Classifiers')
+plt.ylabel('Scores (%)')
+plt.show()

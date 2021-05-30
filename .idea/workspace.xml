@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a111d530-f3b8-49ed-bcc1-eb59506516e4" name="Default Changelist" comment="RobustScaler.py X 수정하고 grid_params 파라미터 약간 수정후 올림">
+    <list default="true" id="a111d530-f3b8-49ed-bcc1-eb59506516e4" name="Default Changelist" comment="출력 결과 약간 수정">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RobustScaler.py" beforeDir="false" afterPath="$PROJECT_DIR$/RobustScaler.py" afterDir="false" />
     </list>
@@ -129,7 +129,14 @@
       <option name="project" value="LOCAL" />
       <updated>1622352028778</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="출력 결과 약간 수정">
+      <created>1622352494751</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1622352494751</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -149,6 +156,7 @@
     <MESSAGE value="Main.py 정리 후 Commit" />
     <MESSAGE value="RobustScaler.py 일단 Github 올립니다. grid_params는 어떤 값을 넣을지 아직 안 정함" />
     <MESSAGE value="RobustScaler.py X 수정하고 grid_params 파라미터 약간 수정후 올림" />
-    <option name="LAST_COMMIT_MESSAGE" value="RobustScaler.py X 수정하고 grid_params 파라미터 약간 수정후 올림" />
+    <MESSAGE value="출력 결과 약간 수정" />
+    <option name="LAST_COMMIT_MESSAGE" value="출력 결과 약간 수정" />
   </component>
 </project>
