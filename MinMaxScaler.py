@@ -79,7 +79,7 @@ grid_params_knn = {
 
 # Make GridSearchCV with KNeighvorsClassifier
 # make model by fit train dataset
-gs_knn = GridSearchCV(KNeighborsClassifier(), grid_params_knn, verbose=1, cv=3, n_jobs=-1)
+gs_knn = GridSearchCV(KNeighborsClassifier(), grid_params_knn, verbose=1, cv=5, n_jobs=-1)
 gs_knn.fit(X_train_balanced, y_train_balanced)
 
 # Show the model performance of train set

@@ -97,7 +97,7 @@ print("Encode object(Non-numeric) columns into 0, 1 from application_record")
 print(app.head())
 print()
 
-print("Print application Dataset of Numeric columns")
+print("Print application Dataset of Non-numeric columns")
 print(app[num_type].head())
 print()
 
@@ -208,3 +208,4 @@ featureScores.columns = ['Specs', 'Score']
 # Total 7 features are chosen to consider
 print("Find out Important Features by using SelectKBest")
 print(featureScores.nlargest(10, 'Score'))
+
