@@ -122,6 +122,11 @@ def contribution(df, target):
     # Split dataset into train and test
     for x in dataframeList:
         X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=0)
+        
+        # solve unbalanced data
+        oversample = SMOTE()
+        X_train_balanced, y_train_balanced = oversample.fit_resample(X_train, y_train)
+        X_test_balanced, y_test_balanced = oversample.fit_resample(X_test, y_test)
 
         # Set grid_params for KNN and DecisionTree for each
         grid_params_knn = {
@@ -138,9 +143,9 @@ def contribution(df, target):
 
         # Make KNN and DecisionTree model with GreedSearchCV
         gs_knn = GridSearchCV(KNeighborsClassifier(), grid_params_knn, verbose=1, cv=5, n_jobs=-1)
-        gs_knn.fit(X_train, y_train)
+        gs_knn.fit(X_train_balanced, y_train_balanced)
         gs_dt = GridSearchCV(DecisionTreeClassifier(), grid_params_dt, verbose=1, cv=3, n_jobs=-1)
-        gs_dt.fit(X_train, y_train)
+        gs_dt.fit(X_train_balanced, y_train_balanced)
 
         if i == 1:
             print("Standard Scaling, Ordinal Encoding")
@@ -165,7 +170,7 @@ def contribution(df, target):
         print("KNN Classifier")
         print("best_parameter: ", gs_knn.best_params_)
         print("best_train_score: %.2f" % gs_knn.best_score_)
-        knn_score = gs_knn.score(X_test, y_test)
+        knn_score = gs_knn.score(X_test_balanced, y_test_balanced)
         print("test_score: %.2f" % knn_score)
         print()
 
@@ -173,7 +178,7 @@ def contribution(df, target):
         print("DecisionTree Classifier")
         print("best_parameter: ", gs_dt.best_params_)
         print("best_train_score: %.2f" % gs_dt.best_score_)
-        dt_score = gs_dt.score(X_test, y_test)
+        dt_score = gs_dt.score(X_test_balanced, y_test_balanced)
         print("test_score: %.2f" % dt_score)
         print()
 
