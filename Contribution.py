@@ -185,4 +185,6 @@ And Scale the whole data
 By using KNN Classifier and DecisionTree Classifier With GreedSearchCV
 Best parameters and Best score and test score will printed.
 """
+
+# This function acts when you type contribution(dataframe df, target value name)
 contribution(df, 'STATUS')
