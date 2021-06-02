@@ -66,8 +66,8 @@ X = df[['NAME_FAMILY_STATUS', 'FLAG_OWN_REALTY', 'FLAG_WORK_PHONE', 'NAME_EDUCAT
         'FLAG_PHONE', 'CODE_GENDER', 'AMT_INCOME_TOTAL']]
 y = df['STATUS']
 
-mm = preprocessing.MinMaxScaler()
-X_scale = mm.fit_transform(X)
+ma = preprocessing.MaxAbsScaler()
+X_scale = ma.fit_transform(X)
 
 over_sample = SMOTE()
 X_balanced, y_balanced = over_sample.fit_resample(X_scale, y)
@@ -102,7 +102,7 @@ def prediction():
     userDF['NAME_EDUCATION_TYPE'] = le5.transform(userDF['NAME_EDUCATION_TYPE'])
     userDF['CODE_GENDER'] = le1.transform(userDF['CODE_GENDER'])
 
-    userDF_scale = mm.transform(userDF)
+    userDF_scale = ma.transform(userDF)
     result = int(KNN.predict(userDF_scale))
 
     if result == 0:
