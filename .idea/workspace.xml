@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a111d530-f3b8-49ed-bcc1-eb59506516e4" name="Default Changelist" comment="유저를 위한 함수">
-      <change afterPath="$PROJECT_DIR$/Contribution.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ForUsers.py" beforeDir="false" afterPath="$PROJECT_DIR$/ForUsers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Contribution.py" beforeDir="false" afterPath="$PROJECT_DIR$/Contribution.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,11 +176,11 @@
     </configuration>
     <list>
       <item itemvalue="Python.main" />
-      <item itemvalue="Python.RobustScaler" />
-      <item itemvalue="Python.MinMaxScaler" />
-      <item itemvalue="Python.StandardScaler" />
-      <item itemvalue="Python.ForUsers" />
       <item itemvalue="Python.Contribution" />
+      <item itemvalue="Python.ForUsers" />
+      <item itemvalue="Python.MinMaxScaler" />
+      <item itemvalue="Python.RobustScaler" />
+      <item itemvalue="Python.StandardScaler" />
     </list>
     <recent_temporary>
       <list>

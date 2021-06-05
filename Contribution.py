@@ -136,7 +136,7 @@ def contribution(df, target):
             'max_leaf_nodes': list(range(7, 100))
         }
 
-        # Make KNN and DecisionTree model with GreedSearchCV
+        # Make KNN and DecisionTree model with GridSearchCV
         gs_knn = GridSearchCV(KNeighborsClassifier(), grid_params_knn, verbose=1, cv=5, n_jobs=-1)
         gs_knn.fit(X_train, y_train)
         gs_dt = GridSearchCV(DecisionTreeClassifier(), grid_params_dt, verbose=1, cv=3, n_jobs=-1)
@@ -182,7 +182,7 @@ def contribution(df, target):
 Here calling contribution function
 It will automatically Encode dataframe's Categorical columns
 And Scale the whole data
-By using KNN Classifier and DecisionTree Classifier With GreedSearchCV
+By using KNN Classifier and DecisionTree Classifier With GridSearchCV
 Best parameters and Best score and test score will printed.
 """
 
